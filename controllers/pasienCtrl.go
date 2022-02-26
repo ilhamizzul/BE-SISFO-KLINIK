@@ -29,3 +29,12 @@ func AddPasien(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Add Pasien Successfully ", savedData))
 }
+
+func GetAllPasien(c echo.Context) error {
+	resultsData, err := repositories.GetAllPasienDB()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	}
+
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien Successfully ", resultsData))
+}
