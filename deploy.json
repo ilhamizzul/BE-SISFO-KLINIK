@@ -1,0 +1,8 @@
+{
+    "apps": [
+      {
+        "name": "BE-SISFO-KLINIK",
+        "script": "go run main.go"
+      }
+    ]
+}
