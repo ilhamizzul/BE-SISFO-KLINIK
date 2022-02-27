@@ -24,4 +24,4 @@ source .profile
 # echo "Restart pm2 service 🔥"
 # pm2 restart deploy.json
 
-echo "Application deployed!"
+echo "Deploying Application Successfully"
