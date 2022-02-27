@@ -19,12 +19,12 @@ sudo su
 # echo "Super User Access 🔥"
 # Affan080701
 
-# echo "Update Root Golang"
-# cd /home/fanzru/
-# echo "Golang Set Up"
-# source .profile
-source /home/fanzru/.profile
-echo "Restart pm2 service 🔥"
+echo "Update Root Golang"
+cd /home/fanzru/
+echo "Golang Set Up"
+source .profile
+# source /home/fanzru/.profile
+# echo "Restart pm2 service 🔥"
 # pm2 restart deploy.json
 
 echo "Application deployed!k
