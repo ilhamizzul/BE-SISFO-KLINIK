@@ -12,12 +12,15 @@ git reset --hard origin/development
 # go mod tidy
 
 echo "Super User Access 🔥"
-sudo su
+su
+echo "Super User Access 🔥"
+Affan080701
 
 echo "Update Root Golang"
-source /home/fanzru/.profile
+cd /home/fanzru/
+source .profile
 
-# echo "Restart pm2 service 🔥"
-# pm2 restart deploy.json
+echo "Restart pm2 service 🔥"
+pm2 restart deploy.json
 
 echo "Application deployed!k
