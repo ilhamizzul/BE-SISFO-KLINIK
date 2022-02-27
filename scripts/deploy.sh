@@ -3,15 +3,12 @@ set -e
 cd ..
 echo "Deploying application ..."
 
-# Update codebase
-git fetch origin development
-echo "failed 1"
-
-git reset --hard origin/development
-echo "failed 2"
-
 echo "Super User Access 🔥"
 sudo su
+# Update codebase
+echo "Update Codebase"
+git fetch origin development
+git reset --hard origin/development
 
 echo "Update Root Golang"
 source ~/.profile
