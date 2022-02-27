@@ -21,5 +21,5 @@ jobs:
           script: |
             sudo su
             cd /home/fanzru/backend/BE-SISFO-KLINIK/scripts
-            chmod +x deploy.sh
-            ./deploy.sh
+            chmod +x deplsuoy.sh
+            source ./deploy.sh
