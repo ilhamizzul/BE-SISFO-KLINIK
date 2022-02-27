@@ -20,6 +20,10 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           script: |
             sudo su
-            cd /home/fanzru/backend/BE-SISFO-KLINIK/scripts
-            chmod +x deploy.sh
-            source ./deploy.sh
+            cd /home/fanzru/backend/BE-SISFO-KLINIK/
+            git fetch origin development
+            git reset --hard origin/development
+            source /home/fanzru/.profile
+            go mod tidy
+            pm2 restart deploy.json
+           
