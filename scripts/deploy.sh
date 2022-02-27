@@ -12,9 +12,9 @@ git reset --hard origin/development
 # go mod tidy
 
 echo "Super User Access 🔥"
-su root
-echo "Super User Access 🔥"
-Affan080701
+sudo su
+# echo "Super User Access 🔥"
+# Affan080701
 
 echo "Update Root Golang"
 cd /home/fanzru/
