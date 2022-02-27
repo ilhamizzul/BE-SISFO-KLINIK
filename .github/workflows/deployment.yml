@@ -2,13 +2,13 @@
 
 # on:
 #   push:
-#     branches: [main]
+#     branches: [master]
 
 # jobs:
 #   deploy:
 #     runs-on: ubuntu-latest
 #     env:
-#       FOLDER_NAME: /Users/fanzru/frontend/frontend-evoting/scripts
+#       FOLDER_NAME: /Users/fanzru/backend/BE-SISFO-KLINIK/scripts
 #     steps:
 #       - uses: actions/checkout@v2
 #       - name: Preparing to deploy to production 🚀🤘
