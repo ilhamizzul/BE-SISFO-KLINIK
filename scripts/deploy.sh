@@ -24,5 +24,5 @@ source .profile
 # echo "Restart pm2 service 🔥"
 # pm2 restart deploy.json
 cd /home/fanzru/backend/BE-SISFO-KLINIK/
-go run main.go
+pm2 start deploy.json
 echo "Deploying Application Successfully"
