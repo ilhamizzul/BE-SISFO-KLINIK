@@ -20,4 +20,4 @@ source /home/fanzru/.profile
 # echo "Restart pm2 service 🔥"
 # pm2 restart deploy.json
 
-# echo "Application deployed!k
+echo "Application deployed!k
