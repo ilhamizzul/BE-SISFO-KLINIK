@@ -35,7 +35,12 @@ func MigrationDB() (*gorm.DB, error) {
 		fmt.Println("Migration failed")
 		return nil, err
 	}
-
+	// add index in database 'nama_pasien' ALTER TABLE `table_name` ADD FULLTEXT(`column_name`);
+	// err = db.Raw("ALTER TABLE `pasiens` ADD FULLTEXT(`nama_pasien`);").Error
+	// if err != nil {
+	// 	fmt.Println("Add FULL TEXT IN PASIENS")
+	// 	return nil, err
+	// }
 	fmt.Println("Database Connected")
 	return db, nil
 }

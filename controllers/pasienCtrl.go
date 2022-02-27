@@ -31,10 +31,20 @@ func AddPasien(c echo.Context) error {
 }
 
 func GetAllPasien(c echo.Context) error {
-	resultsData, err := repositories.GetAllPasienDB()
+	resultsData, row, err := repositories.GetAllPasienDB()
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
+	result := pkg.CreatePagenationV2(resultsData, row)
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien Successfully ", result))
+}
 
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien Successfully ", resultsData))
+func SearchPasien(c echo.Context) error {
+	nama := c.QueryParam("nama")
+	resultsData, row, err := repositories.SearchPasien(nama)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	}
+	result := pkg.CreatePagenationV2(resultsData, row)
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien Successfully ", result))
 }
