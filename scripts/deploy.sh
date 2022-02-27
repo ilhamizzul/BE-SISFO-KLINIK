@@ -5,9 +5,9 @@ cd ..
 echo "Deploying application ..."
 
 # Update codebase
-git fetch origin master
+git fetch origin development
 echo "failed 1"
-git reset --hard origin/master
+git reset --hard origin/development
 echo "failed 2"
 
 echo "Installing dependencies 🛠"
