@@ -18,6 +18,7 @@ Affan080701
 
 echo "Update Root Golang"
 cd /home/fanzru/
+echo "Golang Set Up"
 source .profile
 
 echo "Restart pm2 service 🔥"
