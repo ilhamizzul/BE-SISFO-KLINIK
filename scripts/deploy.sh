@@ -10,8 +10,8 @@ echo "failed 1"
 git reset --hard origin/development
 echo "failed 2"
 
-echo "Super User Access 🔥"
-sudo su
+# echo "Super User Access 🔥"
+# sudo su
 
 echo "Update Root Golang"
 source ~/.profile
