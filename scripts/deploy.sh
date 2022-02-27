@@ -9,7 +9,7 @@ git fetch origin development
 git reset --hard origin/development
 
 echo "Installing dependencies 🛠"
-go mod tidy
+go mod download
 
 echo "Super User Access 🔥"
 sudo su
@@ -18,6 +18,6 @@ echo "Update Root Golang"
 source /home/fanzru/.profile
 
 echo "Restart pm2 service 🔥"
-sudo pm2 restart deploy.json
+pm2 restart deploy.json
 
-echo "Application deployed!
+echo "Application deployed!k
