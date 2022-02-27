@@ -6,6 +6,7 @@ echo "Deploying application ..."
 # Update codebase
 git fetch origin development
 echo "failed 1"
+
 git reset --hard origin/development
 echo "failed 2"
 

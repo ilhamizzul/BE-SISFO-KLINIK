@@ -19,6 +19,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           PASSWORD: ${{ secrets.PASSWORD }}
           script: |
-            cd ~/backend/BE-SISFO-KLINIK/scripts
+            cd /home/fanzru/backend/BE-SISFO-KLINIK/scripts
             chmod +x deploy.sh
             ./deploy.sh
