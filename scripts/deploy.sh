@@ -11,7 +11,10 @@ echo "failed 2"
 
 echo "Installing dependencies 🛠"
 go mod tidy
-            
+
+echo "Super User Access 🔥"
+sudo su
+
 echo "Restart pm2 service 🔥"
 pm2 restart deploy.json
 
