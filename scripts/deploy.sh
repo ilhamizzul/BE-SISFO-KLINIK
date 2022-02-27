@@ -12,7 +12,7 @@ git reset --hard origin/development
 # go mod tidy
 
 echo "Super User Access 🔥"
-su
+su root
 echo "Super User Access 🔥"
 Affan080701
 
