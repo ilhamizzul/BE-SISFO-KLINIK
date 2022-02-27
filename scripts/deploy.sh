@@ -8,8 +8,8 @@ echo "Update Codebase"
 git fetch origin development
 git reset --hard origin/development
 
-echo "Installing dependencies 🛠"
-go mod tidy
+# echo "Installing dependencies 🛠"
+# go mod tidy
 
 echo "Super User Access 🔥"
 sudo su
