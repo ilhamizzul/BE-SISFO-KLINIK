@@ -20,5 +20,5 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           script: |
             cd /home/fanzru/backend/BE-SISFO-KLINIK/scripts
-            chmod +x deplsuoy.sh
+            chmod +x deploy.sh
             source ./deploy.sh
