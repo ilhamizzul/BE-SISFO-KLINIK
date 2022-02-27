@@ -36,7 +36,7 @@ func GetAllPasien(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
 	result := pkg.CreatePagenationV2(resultsData, row)
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien Successfully ", result))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien Successfully ", result))
 }
 
 func SearchPasien(c echo.Context) error {
