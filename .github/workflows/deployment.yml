@@ -19,7 +19,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           PASSWORD: ${{ secrets.PASSWORD }}
           script: |
-            sudo su
             cd ~/backend/BE-SISFO-KLINIK/scripts
             chmod +x deploy.sh
             ./deploy.sh
