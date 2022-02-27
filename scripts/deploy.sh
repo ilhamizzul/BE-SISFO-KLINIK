@@ -9,7 +9,7 @@ git fetch origin development
 git reset --hard origin/development
 
 echo "Installing dependencies 🛠"
-go mod download
+go mod tidy
 
 echo "Super User Access 🔥"
 sudo su
