@@ -14,6 +14,8 @@ git reset --hard origin/development
 echo "Super User Access 🔥"
 sudo su -c "cd /home/fanzru/"
 sudo su -c "source .profile"
+sudo su -c "/home/fanzru/backend/BE-SISFO-KLINIK"
+sudo su -c "pm2 restart deploy.json"
 # echo "Super User Access 🔥"
 # Affan080701
 
@@ -22,7 +24,7 @@ sudo su -c "source .profile"
 # echo "Golang Set Up"
 # source .profile
 
-echo "Restart pm2 service 🔥"
-pm2 restart deploy.json
+# echo "Restart pm2 service 🔥"
+# pm2 restart deploy.json
 
 echo "Application deployed!k
