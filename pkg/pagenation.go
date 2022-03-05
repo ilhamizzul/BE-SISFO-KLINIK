@@ -54,6 +54,7 @@ func CreatePagenationV2(data []models.Pasien, lengthData int64) []ResultData {
 				Pages: page,
 				Data:  value,
 			}
+			// fmt.Println("--------------------------------", appendValue)
 			result = append(result, appendValue)
 			value = nil
 			value = append(value, data[i])
@@ -68,6 +69,7 @@ func CreatePagenationV2(data []models.Pasien, lengthData int64) []ResultData {
 			Pages: page + 1,
 			Data:  value,
 		}
+		// fmt.Println("--------------------------------", appendValue)
 		result = append(result, appendValue)
 	}
 
