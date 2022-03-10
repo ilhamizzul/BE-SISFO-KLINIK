@@ -1,19 +1,28 @@
 #!/bin/sh
 set -e
-
 cd ..
 echo "Deploying application ..."
 
 # Update codebase
-git fetch origin master
-echo "failed 1"
-git reset --hard origin/master
-echo "failed 2"
+echo "Update Codebase"
+git fetch origin development
+git reset --hard origin/development
 
-echo "Installing dependencies 🛠"
-go mod tidy
-            
-echo "Restart pm2 service 🔥"
-pm2 restart deploy.json
+# echo "Installing dependencies 🛠"
+# go mod tidy
 
-echo "Application deployed!"
+echo "Super User Access 🔥"
+sudo su
+
+echo "Update Root Golang"
+cd /home/fanzru/
+echo "Golang Set Up"
+source .profile
+
+# source /home/fanzru/.profile
+# echo "Restart pm2 service 🔥"
+# pm2 restart deploy.json
+cd /home/fanzru/backend/BE-SISFO-KLINIK/
+
+# pm2 start deploy.json
+echo "Deploying Application Successfully"

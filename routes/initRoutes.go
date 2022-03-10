@@ -13,6 +13,7 @@ func Init() *echo.Echo {
 
 	// middleware buat models
 	e.Debug = true
+	e.Use(middleware.CORS())
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
