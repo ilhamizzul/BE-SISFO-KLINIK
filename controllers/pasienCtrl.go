@@ -85,3 +85,17 @@ func ActivatePasien(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", map[string]interface{}{"idPemeriksaan": ActivatedData.IdPemeriksaan}))
 }
+
+func EditPasien(c echo.Context) error {
+	data := &models.Pasien{}
+	if err := c.Bind(&data); err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
+	}
+	PasienUpdated, numData, err := repositories.EditPasienDB(data)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	} else if !numData {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Pasien Already Active!"))
+	}
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", PasienUpdated))
+}
