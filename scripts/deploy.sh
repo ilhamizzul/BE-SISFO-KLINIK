@@ -24,4 +24,4 @@ go mod tidy
 echo "Restart pm2 service 🔥"
 pm2 restart deploy.json
 
-echo "Deploying Application Successfully
+echo "Deploying Application Successfully"
