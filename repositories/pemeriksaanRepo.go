@@ -25,7 +25,7 @@ func GetAllPemeriksaanByIdPasien(id int64) ([]models.Pemeriksaan, int64, error) 
 	if err != nil {
 		return nil, 0, err
 	}
-	result := db.Where("delete_status = ?", id).Find(&pemeriksaan)
+	result := db.Where("id_pasien = ?", id).Find(&pemeriksaan)
 	if result.Error != nil {
 		return nil, 0, err
 	}
