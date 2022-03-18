@@ -6,7 +6,7 @@ import (
 
 type (
 	Pasien struct {
-		IdPemeriksaan      int64     `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
+		Id                 int64     `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
 		NamaPasien         string    `gorm:"type:string;unique;not null;index:;class:FULLTEXT"  validate:"required"`
 		Alamat             string    `gorm:"type:string;not null" validate:"required"`
 		TempatLahir        string    `gorm:"type:string;not null" validate:"required"`

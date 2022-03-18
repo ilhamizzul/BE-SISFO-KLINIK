@@ -63,13 +63,13 @@ func DeletePasien(c echo.Context) error {
 	if err := c.Bind(&data); err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
 	}
-	deletedData, err, numData := repositories.DeletePasienDB(data.IdPemeriksaan)
+	deletedData, err, numData := repositories.DeletePasienDB(data.Id)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	} else if !numData {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Data Already Updated!"))
 	}
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Delete Pasien Successfully ", map[string]interface{}{"idPemeriksaan": deletedData.IdPemeriksaan}))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Delete Pasien Successfully ", map[string]interface{}{"id": deletedData.Id}))
 }
 
 func ActivatePasien(c echo.Context) error {
@@ -77,13 +77,13 @@ func ActivatePasien(c echo.Context) error {
 	if err := c.Bind(&data); err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
 	}
-	ActivatedData, err, numData := repositories.ActivatePasienDB(data.IdPemeriksaan)
+	ActivatedData, err, numData := repositories.ActivatePasienDB(data.Id)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	} else if !numData {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Pasien Already Active!"))
 	}
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", map[string]interface{}{"idPemeriksaan": ActivatedData.IdPemeriksaan}))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", map[string]interface{}{"id": ActivatedData.Id}))
 }
 
 func EditPasien(c echo.Context) error {

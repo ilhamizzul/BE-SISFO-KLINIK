@@ -11,3 +11,9 @@ func ValidateAddPasien(pasien *models.Pasien) error {
 	err := validate.Struct(pasien)
 	return err
 }
+
+func ValidateAddPemeriksaan(pemeriksaan *models.Pemeriksaan) error {
+	validate := validator.New()
+	err := validate.Struct(pemeriksaan)
+	return err
+}

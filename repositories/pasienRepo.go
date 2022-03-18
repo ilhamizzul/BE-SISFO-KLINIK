@@ -108,7 +108,7 @@ func EditPasienDB(data *models.Pasien) (*models.Pasien, bool, error) {
 		"jenis_kelamin":        data.JenisKelamin,
 		"updated_at":           time.Now(),
 	}
-	result := db.Model(&data).Where("id_pemeriksaan = ? AND delete_status = 0", data.IdPemeriksaan).Updates(updateData)
+	result := db.Model(&data).Where("id_pemeriksaan = ? AND delete_status = 0", data.Id).Updates(updateData)
 	if result.Error != nil {
 		return data, false, result.Error
 	} else if result.RowsAffected == 0 {
