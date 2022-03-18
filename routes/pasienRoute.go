@@ -13,5 +13,6 @@ func RoutePasien(e *echo.Echo) *echo.Echo {
 	e.POST("/api/pasien/hapus", controllers.DeletePasien)
 	e.GET("/api/pasien/sampah", controllers.GetAllPasienDelete)
 	e.POST("/api/pasien/aktivasi", controllers.ActivatePasien)
+	e.POST("/api/pasien/edit", controllers.EditPasien)
 	return e
 }

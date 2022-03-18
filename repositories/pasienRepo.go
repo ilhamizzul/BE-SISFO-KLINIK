@@ -94,3 +94,25 @@ func GetAllPasienDeleteDB() ([]models.Pasien, int64, error) {
 
 	return pasien, result.RowsAffected, nil
 }
+
+func EditPasienDB(data *models.Pasien) (*models.Pasien, bool, error) {
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return data, false, err
+	}
+	updateData := map[string]interface{}{
+		"alamat":               data.Alamat,
+		"tempat_lahir":         data.TempatLahir,
+		"tanggal_lahir":        data.TanggalLahir,
+		"nama_kepala_keluarga": data.NamaKepalaKeluarga,
+		"jenis_kelamin":        data.JenisKelamin,
+		"updated_at":           time.Now(),
+	}
+	result := db.Model(&data).Where("id_pemeriksaan = ? AND delete_status = 0", data.IdPemeriksaan).Updates(updateData)
+	if result.Error != nil {
+		return data, false, result.Error
+	} else if result.RowsAffected == 0 {
+		return data, false, nil
+	}
+	return data, true, nil
+}
