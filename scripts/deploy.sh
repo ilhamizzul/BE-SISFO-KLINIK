@@ -18,8 +18,8 @@ source .profile
 echo "to Directory File"
 cd /home/fanzru/backend/BE-SISFO-KLINIK/
 
-# echo "Installing dependencies 🛠"
-# go mod tidy
+echo "Installing dependencies 🛠"
+go mod tidy
 
 echo "Restart pm2 service 🔥"
 pm2 restart deploy.json
