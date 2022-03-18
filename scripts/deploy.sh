@@ -8,10 +8,8 @@ echo "Update Codebase"
 git fetch origin development
 git reset --hard origin/development
 
-
-
 echo "Golang Set Up"
-cd 
+cd
 source .profile
 
 # source /home/fanzru/.profile
