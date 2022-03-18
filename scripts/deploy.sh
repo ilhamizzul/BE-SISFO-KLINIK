@@ -22,6 +22,6 @@ echo "to Directory File"
 cd /home/fanzru/backend/BE-SISFO-KLINIK/
 
 echo "Restart pm2 service 🔥"
-pm2 start deploy.json
+pm2 restart deploy.json
 
-echo "Deploying Application Successfully"
+echo "Deploying Application Successfully
