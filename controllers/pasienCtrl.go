@@ -5,6 +5,7 @@ import (
 	"BE-SISFO-KLINIK/pkg"
 	"BE-SISFO-KLINIK/repositories"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -98,4 +99,17 @@ func EditPasien(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Pasien Already Active!"))
 	}
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", PasienUpdated))
+}
+
+func GetAllPasienById(c echo.Context) error {
+	id := c.QueryParam("id")
+	n, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id not valid"))
+	}
+	resultsData, err := repositories.GetAllPasienByIdDB(n)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	}
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien Successfully ", resultsData))
 }

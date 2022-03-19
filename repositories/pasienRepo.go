@@ -116,3 +116,16 @@ func EditPasienDB(data *models.Pasien) (*models.Pasien, bool, error) {
 	}
 	return data, true, nil
 }
+func GetAllPasienByIdDB(id int64) (*models.Pasien, error) {
+	var pasien *models.Pasien
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return nil, err
+	}
+	result := db.Where("delete_status = ?", false).Find(&pasien)
+	if result.Error != nil {
+		return nil, err
+	}
+
+	return pasien, nil
+}
