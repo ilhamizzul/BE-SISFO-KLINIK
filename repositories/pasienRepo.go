@@ -122,7 +122,7 @@ func GetAllPasienByIdDB(id int64) (*models.Pasien, error) {
 	if err != nil {
 		return nil, err
 	}
-	result := db.Where("delete_status = ?", false).Find(&pasien)
+	result := db.Where("id = ? = delete_status = 0", id).Find(&pasien)
 	if result.Error != nil {
 		return nil, err
 	}
