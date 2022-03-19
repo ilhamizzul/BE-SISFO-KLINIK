@@ -11,7 +11,6 @@ type (
 		HasilPemeriksaan   string    `gorm:"type:string;not null" validate:"required"`
 		Diagnosis          string    `gorm:"type:string;not null" validate:"required"`
 		Terapi             string    `gorm:"type:string;not null" validate:"required"`
-		CatatanDokter      string    `gorm:"type:string;not null" validate:"required"`
 		StatusTransaksi    string    `gorm:"type:enum('sudah', 'belum');default:'belum'"`
 		IdPasien           int64     `gorm:"foreignKey:IdPasien;references:Pasiens" validate:"required"`
 		DeleteStatus       bool      `gorm:"type:bool;not null"`
