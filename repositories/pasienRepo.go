@@ -56,7 +56,7 @@ func DeletePasienDB(id int64) (models.Pasien, error, bool) {
 		return pasien, err, false
 	}
 
-	result := db.Model(&pasien).Where("id_pemeriksaan = ? AND delete_status = 0", id).Updates(map[string]interface{}{"delete_status": true, "updated_at": time.Now()})
+	result := db.Model(&pasien).Where("id = ? AND delete_status = 0", id).Updates(map[string]interface{}{"delete_status": true, "updated_at": time.Now()})
 	if result.Error != nil {
 		return pasien, result.Error, false
 	} else if result.RowsAffected == 0 {
@@ -72,7 +72,7 @@ func ActivatePasienDB(id int64) (models.Pasien, error, bool) {
 		return pasien, err, false
 	}
 
-	result := db.Model(&pasien).Where("id_pemeriksaan = ? AND delete_status = 1", id).Updates(map[string]interface{}{"delete_status": false, "updated_at": time.Now()})
+	result := db.Model(&pasien).Where("id = ? AND delete_status = 1", id).Updates(map[string]interface{}{"delete_status": false, "updated_at": time.Now()})
 	if result.Error != nil {
 		return pasien, result.Error, false
 	} else if result.RowsAffected == 0 {
@@ -108,11 +108,24 @@ func EditPasienDB(data *models.Pasien) (*models.Pasien, bool, error) {
 		"jenis_kelamin":        data.JenisKelamin,
 		"updated_at":           time.Now(),
 	}
-	result := db.Model(&data).Where("id_pemeriksaan = ? AND delete_status = 0", data.IdPemeriksaan).Updates(updateData)
+	result := db.Model(&data).Where("id = ? AND delete_status = 0", data.Id).Updates(updateData)
 	if result.Error != nil {
 		return data, false, result.Error
 	} else if result.RowsAffected == 0 {
 		return data, false, nil
 	}
 	return data, true, nil
+}
+func GetAllPasienByIdDB(id int64) (*models.Pasien, error) {
+	var pasien *models.Pasien
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return nil, err
+	}
+	result := db.Where("id = ? = delete_status = 0", id).Find(&pasien)
+	if result.Error != nil {
+		return nil, err
+	}
+
+	return pasien, nil
 }

@@ -1,1 +1,13 @@
-FROM go
+FROM golang:1.17.6-alpine3.14 AS builder
+WORKDIR /build
+COPY . .
+RUN go mod download
+RUN go build -o ./appbin
+
+FROM alpine:3.14.3
+WORKDIR /app
+COPY --from=builder /build/appbin ./
+RUN mkdir static
+RUN mkdir static/image
+EXPOSE 1323
+CMD ["./appbin"]
