@@ -17,3 +17,9 @@ func ValidateAddPemeriksaan(pemeriksaan *models.Pemeriksaan) error {
 	err := validate.Struct(pemeriksaan)
 	return err
 }
+
+func ValidateAddObat(obat *models.Obat) error {
+	validate := validator.New()
+	err := validate.Struct(obat)
+	return err
+}
