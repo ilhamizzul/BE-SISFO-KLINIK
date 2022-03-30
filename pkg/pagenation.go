@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"BE-SISFO-KLINIK/models"
+	"BE-SISFO-KLINIK/repositories"
 )
 
 type ResultData struct {
@@ -11,6 +12,10 @@ type ResultData struct {
 type ResultDataPemeriksaan struct {
 	Pages int64
 	Data  []models.Pemeriksaan
+}
+type ResultDataObat struct {
+	Pages int64
+	Data  []repositories.ResultAllObats
 }
 
 // func CreatePagenation(data []models.Pasien, lengthData int64) [][]models.Pasien {
@@ -106,6 +111,43 @@ func CreatePagenationPemeriksaan(data []models.Pemeriksaan, lengthData int64) []
 	}
 	if value != nil {
 		appendValue := ResultDataPemeriksaan{
+			Pages: page + 1,
+			Data:  value,
+		}
+		// fmt.Println("--------------------------------", appendValue)
+		result = append(result, appendValue)
+	}
+
+	return result
+}
+
+func CreatePagenationObat(data []repositories.ResultAllObats, lengthData int) []ResultDataObat {
+	var page, appendIdx int64
+	var i int
+	var value []repositories.ResultAllObats
+	var result []ResultDataObat
+	page = 0
+	appendIdx = 0
+	for i = 0; i < lengthData; i++ {
+		if appendIdx == 10 {
+			page++
+			appendIdx = 0
+			appendValue := ResultDataObat{
+				Pages: page,
+				Data:  value,
+			}
+			// fmt.Println("--------------------------------", appendValue)
+			result = append(result, appendValue)
+			value = nil
+			value = append(value, data[i])
+			appendIdx++
+		} else {
+			value = append(value, data[i])
+			appendIdx++
+		}
+	}
+	if value != nil {
+		appendValue := ResultDataObat{
 			Pages: page + 1,
 			Data:  value,
 		}

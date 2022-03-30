@@ -25,19 +25,19 @@ func CreateObat(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
-	err = repositories.CreateStokDB(savedData.Id)
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
-	}
+	// err = repositories.CreateStokDB(savedData.Id)
+	// if err != nil {
+	// 	return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	// }
 
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Add Obat Successfully ", savedData))
 }
 
 func GetAllObat(c echo.Context) error {
 	Data, err := repositories.GetAllObatDB()
-
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Obat Successfully ", Data))
+	result := pkg.CreatePagenationObat(Data, len(Data))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Obat Successfully ", result))
 }
