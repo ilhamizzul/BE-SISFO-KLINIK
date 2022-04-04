@@ -40,13 +40,13 @@ func GetAllPasien(c echo.Context) error {
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien Successfully ", result))
 }
 
-func GetAllPasienDelete(c echo.Context) error {
+func GetAllPasienByName(c echo.Context) error {
 	resultsData, row, err := repositories.GetAllPasienDeleteDB()
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
 	result := pkg.CreatePagenationV2(resultsData, row)
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien Successfully ", result))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien by Name Successfully ", result))
 }
 
 func SearchPasien(c echo.Context) error {
@@ -111,5 +111,5 @@ func GetAllPasienById(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Pasien Successfully ", resultsData))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Pasien by id Successfully ", resultsData))
 }

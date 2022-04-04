@@ -28,12 +28,22 @@ func MigrationDB() (*gorm.DB, error) {
 
 	err = db.AutoMigrate(&models.Pasien{})
 	if err != nil {
-		fmt.Println("Migration failed")
+		fmt.Println("Migration table pasiens failed")
 		return nil, err
 	}
 	err = db.AutoMigrate(&models.Pemeriksaan{})
 	if err != nil {
-		fmt.Println("Migration failed")
+		fmt.Println("Migration table pemeriksaans failed")
+		return nil, err
+	}
+	err = db.AutoMigrate(&models.Obat{})
+	if err != nil {
+		fmt.Println("Migration table obats failed")
+		return nil, err
+	}
+	err = db.AutoMigrate(&models.StokObat{})
+	if err != nil {
+		fmt.Println("Migration table stokobats failed")
 		return nil, err
 	}
 	// add index in database 'nama_pasien' ALTER TABLE `table_name` ADD FULLTEXT(`column_name`);
