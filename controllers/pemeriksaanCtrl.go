@@ -33,9 +33,7 @@ func AddPemeriksaan(c echo.Context) error {
 
 func GetAllPemeriksaanForPasien(c echo.Context) error {
 	id := c.QueryParam("id")
-
 	n, err := strconv.ParseInt(id, 10, 64)
-
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id not valid"))
 	}

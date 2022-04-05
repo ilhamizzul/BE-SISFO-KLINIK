@@ -55,7 +55,6 @@ func DeletePasienDB(id int64) (models.Pasien, error, bool) {
 	if err != nil {
 		return pasien, err, false
 	}
-
 	result := db.Model(&pasien).Where("id = ? AND delete_status = 0", id).Updates(map[string]interface{}{"delete_status": true, "updated_at": time.Now()})
 	if result.Error != nil {
 		return pasien, result.Error, false

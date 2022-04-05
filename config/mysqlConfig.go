@@ -25,7 +25,6 @@ func MigrationDB() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	err = db.AutoMigrate(&models.Pasien{})
 	if err != nil {
 		fmt.Println("Migration table pasiens failed")
@@ -46,6 +45,22 @@ func MigrationDB() (*gorm.DB, error) {
 		fmt.Println("Migration table stokobats failed")
 		return nil, err
 	}
+	err = db.AutoMigrate(&models.Obat{})
+	if err != nil {
+		fmt.Println("Migration table obats failed")
+		return nil, err
+	}
+	err = db.AutoMigrate(&models.TransaksiObat{})
+	if err != nil {
+		fmt.Println("Migration table transaksi_obats failed")
+		return nil, err
+	}
+	// err = db.AutoMigrate(&models.Transaksi{})
+	// if err != nil {
+	// 	fmt.Println("Migration table transaksi failed")
+	// 	return nil, err
+	// }
+
 	// add index in database 'nama_pasien' ALTER TABLE `table_name` ADD FULLTEXT(`column_name`);
 	// err = db.Raw("ALTER TABLE `pasiens` ADD FULLTEXT(`nama_pasien`);").Error
 	// if err != nil {

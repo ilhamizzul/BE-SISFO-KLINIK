@@ -12,6 +12,7 @@ func Init() *echo.Echo {
 	e = RoutePasien(e)
 	e = RoutePemeriksaan(e)
 	e = RouteObat(e)
+	e = RouteTransaksi(e)
 
 	// middleware buat models
 	e.Debug = true
