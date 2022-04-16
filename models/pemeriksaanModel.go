@@ -14,7 +14,7 @@ type (
 		StatusTransaksi    string    `gorm:"type:enum('sudah', 'belum');default:'belum'"`
 		IdPasien           int64     `gorm:"foreignKey:IdPasien;references:Pasiens;not null" validate:"required"`
 		DeleteStatus       bool      `gorm:"type:bool;not null"`
-		TanggalBeliObat    time.Time `gorm:"type:datetime;"`
+		TanggalBeliObat    time.Time `gorm:"type:datetime;default:null"`
 		CreatedAt          time.Time `gorm:"type:datetime;not null"`
 		UpdatedAt          time.Time `gorm:"type:datetime;"`
 	}

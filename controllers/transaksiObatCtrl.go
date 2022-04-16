@@ -4,6 +4,7 @@ import (
 	"BE-SISFO-KLINIK/models"
 	"BE-SISFO-KLINIK/pkg"
 	"BE-SISFO-KLINIK/repositories"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -16,24 +17,20 @@ func AddTransaksiObat(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id not valid"))
 	}
+	// todo cek id_pemeriksaan ada atau engga!
 
 	data := []models.TransaksiObat{}
 	if err := c.Bind(&data); err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
 	}
-
-	// err = pkg.ValidateAddTransaksiObat(&data)
-	// if err != nil {
-	// 	return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Missing fields or data not valid!"))
-	// }
-
+	fmt.Println("--------------------------------")
 	if len(data) == 0 {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Data Not Found"))
 	}
 
 	result, err := repositories.AddTransaksiObatDB(data, len(data), id)
 	if err != nil {
-		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Missing fields or data not valid!"))
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Add Pasien Successfully ", result))
 }
