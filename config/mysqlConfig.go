@@ -16,6 +16,7 @@ func ConnectionDatabase() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return db, nil
 }
 func MigrationDB() (*gorm.DB, error) {
