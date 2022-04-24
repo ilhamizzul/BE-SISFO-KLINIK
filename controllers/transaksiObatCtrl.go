@@ -4,7 +4,6 @@ import (
 	"BE-SISFO-KLINIK/models"
 	"BE-SISFO-KLINIK/pkg"
 	"BE-SISFO-KLINIK/repositories"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -23,7 +22,7 @@ func AddTransaksiObat(c echo.Context) error {
 	if err := c.Bind(&data); err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
 	}
-	fmt.Println("--------------------------------")
+
 	if len(data) == 0 {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Data Not Found"))
 	}
@@ -32,5 +31,27 @@ func AddTransaksiObat(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	}
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Add Pasien Successfully ", result))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Add Transaction Successfully ", result))
+}
+
+func GetTransaksiPasienByPemeriksaanId(c echo.Context) error {
+	param := c.Param("id_pemeriksaan")
+	IdPemeriksaan, err := strconv.ParseInt(param, 10, 64)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id pemeriksaan not valid"))
+	}
+	param = c.Param("id_pasien")
+	IdPasien, err := strconv.ParseInt(param, 10, 64)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id pasien not valid"))
+	}
+	result, err := repositories.GetAllTransactionsByPemeriksaanId(IdPemeriksaan, IdPasien)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	}
+	if result == nil {
+		return c.JSON(http.StatusOK, pkg.ResponseSuccess(400, false, "Trasaction not found ", nil))
+	}
+
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get Transaction Successfully ", result))
 }

@@ -9,5 +9,6 @@ import (
 func RouteObat(e *echo.Echo) *echo.Echo {
 	e.POST("/api/obat", controllers.CreateObat)
 	e.GET("/api/obat", controllers.GetAllObat)
+	e.GET("/api/obat/sampah", controllers.GetAllTrashObat)
 	return e
 }

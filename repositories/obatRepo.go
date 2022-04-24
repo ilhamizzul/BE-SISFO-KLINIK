@@ -43,7 +43,20 @@ func GetAllObatDB() ([]ResultAllObats, error) {
 	if r.Error != nil {
 		return nil, r.Error
 	}
-
 	return result, nil
+}
 
+func GetAllTrashObatDB() ([]ResultAllObats, error) {
+	var result []ResultAllObats
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return nil, err
+	}
+	// err = db.Model(obat).Preload(string(clause.)).Find(obat).Error
+	//r := db.Raw("SELECT a.id,a.kode,a.nama,a.harga_jual,b.masuk,b.keluar,b.sisa FROM obats a JOIN stok_obats b ON a.id = b.id_obat;").Scan(&result)
+	r := db.Raw("SELECT a.id,a.kode,a.nama,a.harga_jual,b.masuk,b.keluar,b.sisa FROM obats a JOIN stok_obats b ON a.id = b.id_obat WHERE ( YEAR(a.updated_at) = YEAR(curdate()) ) AND ( MONTH(a.updated_at) = MONTH(curdate())  ) AND (a.delete_status = 1) ORDER BY (b.sisa) DESC").Scan(&result)
+	if r.Error != nil {
+		return nil, r.Error
+	}
+	return result, nil
 }

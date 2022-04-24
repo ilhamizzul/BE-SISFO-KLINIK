@@ -41,3 +41,12 @@ func GetAllObat(c echo.Context) error {
 	result := pkg.CreatePagenationObat(Data, len(Data))
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Obat Successfully ", result))
 }
+
+func GetAllTrashObat(c echo.Context) error {
+	Data, err := repositories.GetAllTrashObatDB()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	}
+	result := pkg.CreatePagenationObat(Data, len(Data))
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Get All Trash Obat Successfully ", result))
+}
