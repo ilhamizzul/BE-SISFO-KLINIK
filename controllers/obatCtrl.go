@@ -83,5 +83,15 @@ func ActivatedObat(c echo.Context) error {
 }
 
 func EditObat(c echo.Context) error {
-	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Delete Obat Successfully", nil))
+	data := &models.UpdateObat{}
+	if err := c.Bind(&data); err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
+	}
+	ObatUpdated, numData, err := repositories.EditObatDB(data)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
+	} else if !numData {
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Obat Already Updated!"))
+	}
+	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Updated Obat Successfully", ObatUpdated))
 }

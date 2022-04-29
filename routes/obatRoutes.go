@@ -12,5 +12,6 @@ func RouteObat(e *echo.Echo) *echo.Echo {
 	e.GET("/api/obat/sampah", controllers.GetAllTrashObat)
 	e.DELETE("/api/obat/deactive/:id", controllers.DeactiveObat)
 	e.PATCH("/api/obat/activated/:id", controllers.ActivatedObat)
+	e.PATCH("/api/obat", controllers.EditObat)
 	return e
 }

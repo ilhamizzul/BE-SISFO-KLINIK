@@ -96,7 +96,7 @@ func EditPasien(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, err.Error()))
 	} else if !numData {
-		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Pasien Already Active!"))
+		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Pasien Already Updated!"))
 	}
 	return c.JSON(http.StatusOK, pkg.ResponseSuccess(200, true, "Activated Pasien Successfully ", PasienUpdated))
 }

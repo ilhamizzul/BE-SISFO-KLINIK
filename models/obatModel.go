@@ -15,3 +15,10 @@ type (
 		UpdatedAt    time.Time `gorm:"type:datetime;"`
 	}
 )
+
+type UpdateObat struct {
+	Id        int64     `gorm:"AUTO_INCREMENT;PRIMARY_KEY;not null"`
+	Nama      string    `gorm:"type:string;not null" validate:"required"`
+	HargaJual int64     `gorm:"type:integer;not null" validate:"required"`
+	UpdatedAt time.Time `gorm:"type:datetime;"`
+}

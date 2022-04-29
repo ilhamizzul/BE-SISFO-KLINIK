@@ -93,3 +93,23 @@ func ActivateObatDB(idObat int64) (*models.Obat, error, bool) {
 	return obat, nil, true
 
 }
+
+func EditObatDB(data *models.UpdateObat) (*models.UpdateObat, bool, error) {
+	var obat *models.Obat
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return data, false, err
+	}
+	updateData := map[string]interface{}{
+		"nama":       data.Nama,
+		"harga_jual": data.HargaJual,
+		"updated_at": time.Now(),
+	}
+	result := db.Model(&obat).Where("id = ? AND delete_status = 0", data.Id).Updates(updateData)
+	if result.Error != nil {
+		return data, false, result.Error
+	} else if result.RowsAffected == 0 {
+		return data, false, nil
+	}
+	return data, true, nil
+}
