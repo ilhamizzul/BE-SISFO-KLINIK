@@ -3,6 +3,7 @@ package repositories
 import (
 	"BE-SISFO-KLINIK/config"
 	"BE-SISFO-KLINIK/models"
+	"time"
 )
 
 func CreateObatDB(data *models.Obat) (*models.Obat, error) {
@@ -59,4 +60,36 @@ func GetAllTrashObatDB() ([]ResultAllObats, error) {
 		return nil, r.Error
 	}
 	return result, nil
+}
+
+func DeleteObatDB(idObat int64) (*models.Obat, error, bool) {
+	var obat *models.Obat
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return nil, nil, false
+	}
+	result := db.Model(&obat).Where("id = ? AND delete_status = 0", idObat).Updates(map[string]interface{}{"delete_status": true, "updated_at": time.Now()})
+	if result.Error != nil {
+		return obat, result.Error, false
+	} else if result.RowsAffected == 0 {
+		return obat, nil, false
+	}
+	return obat, nil, true
+
+}
+
+func ActivateObatDB(idObat int64) (*models.Obat, error, bool) {
+	var obat *models.Obat
+	db, err := config.ConnectionDatabase()
+	if err != nil {
+		return nil, nil, false
+	}
+	result := db.Model(&obat).Where("id = ? AND delete_status = 1", idObat).Updates(map[string]interface{}{"delete_status": false, "updated_at": time.Now()})
+	if result.Error != nil {
+		return obat, result.Error, false
+	} else if result.RowsAffected == 0 {
+		return obat, nil, false
+	}
+	return obat, nil, true
+
 }
