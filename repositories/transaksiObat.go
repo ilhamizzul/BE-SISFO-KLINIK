@@ -47,15 +47,12 @@ func AddTransaksiObatDB(data []models.TransaksiObat, batch int, IdPemeriksaan in
 	return nil, nil
 }
 
-type Nota struct {
-	pasien models.Pasien
-	obat   models.Obat
-}
-
 func GetAllTransactionsByPemeriksaanId(IdPemeriksaan int64, IdPasien int64) (interface{}, error) {
 	var Pemeriksaan models.Pemeriksaan
 	var TransaksiObat []models.TransaksiObat
 	var Pasien models.Pasien
+	var ArrObat []models.Obat
+	var Obat models.Obat
 	db, err := config.ConnectionDatabase()
 	if err != nil {
 		return nil, err
@@ -77,6 +74,14 @@ func GetAllTransactionsByPemeriksaanId(IdPemeriksaan int64, IdPasien int64) (int
 			return err
 		}
 
+		for _, item := range TransaksiObat {
+			db.Where("delete_status = ? AND id = ?", false, item.Id).Find(&Obat)
+			if result.Error != nil {
+				return err
+			}
+			ArrObat = append(ArrObat, Obat)
+		}
+
 		return nil
 	})
 
@@ -86,6 +91,9 @@ func GetAllTransactionsByPemeriksaanId(IdPemeriksaan int64, IdPasien int64) (int
 
 	return map[string]interface{}{
 		"pasien": Pasien,
-		"obat":   TransaksiObat,
+		"obat": map[string]interface{}{
+			"detail_transasksi": TransaksiObat,
+			"detail_obat":       ArrObat,
+		},
 	}, nil
 }
