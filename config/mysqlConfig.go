@@ -9,7 +9,7 @@ import (
 )
 
 func ConnectionDatabase() (*gorm.DB, error) {
-	dsn := "root:fanzru@tcp(0.0.0.0:3306)/db_klinik?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "affan:Affan!080701@tcp(0.0.0.0:3306)/db_klinik?charset=utf8mb4&parseTime=True&loc=Local"
 	//	dsn := "root:@tcp(127.0.0.1:3306)/db_klinik?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	// if there is an error opening the connection, handle it
