@@ -19,10 +19,10 @@ func AddPemeriksaan(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Bind data Error!"))
 	}
 	// after bind next to validate data
-	err := pkg.ValidateAddPemeriksaan(data)
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Missing fields or data not valid!"))
-	}
+	// err := pkg.ValidateAddPemeriksaan(data)
+	// if err != nil {
+	// 	return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "Missing fields or data not valid!"))
+	// }
 
 	savedData, err := repositories.CreatePemeriksaanDB(data)
 	if err != nil {
@@ -33,9 +33,7 @@ func AddPemeriksaan(c echo.Context) error {
 
 func GetAllPemeriksaanForPasien(c echo.Context) error {
 	id := c.QueryParam("id")
-
 	n, err := strconv.ParseInt(id, 10, 64)
-
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, pkg.ResponseError(400, false, "id not valid"))
 	}
