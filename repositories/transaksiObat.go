@@ -75,11 +75,12 @@ func GetAllTransactionsByPemeriksaanId(IdPemeriksaan int64, IdPasien int64) (int
 		}
 
 		for _, item := range TransaksiObat {
-			result = db.Where("delete_status = ? AND id = ?", false, item.IdObat).Scan(&Obat)
+			result = db.Where("delete_status = ? AND id = ?", false, item.IdObat).Find(&Obat)
 			if result.Error != nil {
 				return err
 			}
 			ArrObat = append(ArrObat, Obat)
+			Obat = models.Obat{}
 		}
 
 		return nil
