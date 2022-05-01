@@ -75,7 +75,7 @@ func GetAllTransactionsByPemeriksaanId(IdPemeriksaan int64, IdPasien int64) (int
 		}
 
 		for _, item := range TransaksiObat {
-			db.Where("delete_status = ? AND id = ?", false, item.IdObat).Find(&Obat)
+			result = db.Where("delete_status = ? AND id = ?", false, item.IdObat).Scan(&Obat)
 			if result.Error != nil {
 				return err
 			}
